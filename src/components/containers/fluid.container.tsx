@@ -3,7 +3,7 @@ type FluidContainerProps = {
   children: React.ReactNode;
 };
 
-const FluidContainer = (props: FluidContainerProps) => {
+const FluidContainer: React.FC<FluidContainerProps> = (props) => {
   const { className, children } = props;
 
   return (

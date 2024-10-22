@@ -3,7 +3,7 @@ type ColContainerProps = {
   children: React.ReactNode;
 };
 
-const ColContainer = (props: ColContainerProps) => {
+const ColContainer: React.FC<ColContainerProps> = (props) => {
   const { className, children } = props;
 
   return <div className={`flex flex-col ${className}`}>{children}</div>;
