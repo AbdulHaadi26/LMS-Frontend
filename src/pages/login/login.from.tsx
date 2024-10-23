@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
 import TextInput from "../../components/inputs/text.input";
-import { createTenant } from "../../redux/actions/tenant.actions";
-import { ButtonActions, DispatchType } from "../../utils/types";
-import { useDispatch } from "react-redux";
+import { ButtonActions } from "../../utils/types";
 import { RegisterState } from "../../redux/reducers/register.reducer";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
@@ -18,7 +16,6 @@ type RegisterTenantType = {
 };
 
 const RegisterForm: React.FC = () => {
-  const dispatch: DispatchType = useDispatch();
   const navigate = useNavigate();
 
   const [form, setForm] = useState<RegisterTenantType>({
@@ -37,7 +34,6 @@ const RegisterForm: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(createTenant(form));
   };
 
   useEffect(() => {
@@ -54,14 +50,6 @@ const RegisterForm: React.FC = () => {
       <p className="text-base px-4 text-center font-medium text-light-400 mt-2 mb-8 font-secondary">
         Please fill in this form to create an account.
       </p>
-      <TextInput
-        label="School Name"
-        className="w-full p-2"
-        text={form.name}
-        onChange={(text) => onValueChanged(text, "name")}
-        placeholder="Enter your school name"
-        required={true}
-      />
       <TextInput
         label="Email"
         type="email"
@@ -88,16 +76,15 @@ const RegisterForm: React.FC = () => {
         type={ButtonActions.SUBMIT}
         className="w-full p-2 mt-8 bg-blue-200 hover:bg-blue-100 text-white"
       >
-        Register
+        Login
       </FilledButton>
-
       <p className="text-xs font-medium text-light-400 mt-4 font-secondary">
-        Already have an account?
+        Don't have an account?
         <span
-          className="text-blue-200 font-bold cursor-pointer pl-0.5"
-          onClick={() => navigate("/login")}
+          className="text-blue-200 font-bold cursor-pointer pl-1"
+          onClick={() => navigate("/register")}
         >
-          Login here
+          Create account
         </span>
       </p>
     </FormContainer>

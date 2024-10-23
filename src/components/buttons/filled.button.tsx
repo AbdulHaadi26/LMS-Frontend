@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ButtonActions } from "../../utils/types";
 
 type FilledButtonProps = {
@@ -21,11 +22,11 @@ const FilledButton: React.FC<FilledButtonProps> = (props) => {
       type={type}
       onClick={() => onClick()}
       disabled={disabled}
-      className={`text-xs font-semibold rounded ${className}`}
+      className={`text-sm font-bold font-primary rounded ${className}`}
     >
       {children}
     </button>
   );
 };
 
-export default FilledButton;
+export default memo(FilledButton);

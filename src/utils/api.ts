@@ -1,16 +1,16 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost";
+const baseURL = "http://localhost/api";
 
 export const publicAPI = axios.create({
-  baseURL: "http://localhost",
+  baseURL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const privateAPI = axios.create({
-  baseURL: "http://localhost",
+  baseURL,
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("token")}`,

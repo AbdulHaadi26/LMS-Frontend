@@ -16,17 +16,19 @@ export const createTenant =
       });
 
       const res = await publicAPI.post("/tenant/register", data);
+
       if (res?.data) {
         dispatch({
           type: RegisterActions.SET_SUCCESS,
         });
-      } else {
-        throw new Error(res?.data?.error);
       }
+
+      throw new Error(res?.data?.error);
     } catch {
       console.log("error");
       dispatch({
         type: RegisterActions.SET_ERROR,
+        payload: "Registeration failed",
       });
     }
   };
