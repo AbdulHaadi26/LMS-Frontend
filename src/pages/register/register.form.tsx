@@ -86,7 +86,7 @@ const RegisterForm: React.FC = () => {
       <FilledButton
         disabled={isLoading}
         type={ButtonActions.SUBMIT}
-        className="w-full p-2 mt-8 bg-blue-200 hover:bg-blue-100 text-white"
+        className="w-full p-2 mt-4 bg-blue-200 hover:bg-blue-100 text-white"
       >
         Register
       </FilledButton>
@@ -94,7 +94,7 @@ const RegisterForm: React.FC = () => {
       <p className="text-xs font-medium text-light-400 mt-4 font-secondary">
         Already have an account?
         <span
-          className="text-blue-200 font-bold cursor-pointer pl-0.5"
+          className="text-blue-200 font-bold cursor-pointer pl-1"
           onClick={() => navigate("/login")}
         >
           Login here

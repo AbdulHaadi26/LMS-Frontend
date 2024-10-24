@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
 import TextInput from "../../components/inputs/text.input";
-import { ButtonActions } from "../../utils/types";
-import { RegisterState } from "../../redux/reducers/register.reducer";
+import { ButtonActions, DispatchType } from "../../utils/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { useNavigate } from "react-router-dom";
 import ErrorComponent from "../../components/typography/error.typo";
+import { LoginState } from "../../redux/reducers/login.reducer";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/actions/auth.action";
 
-type RegisterTenantType = {
-  name: string;
+type LoginTenantType = {
   email: string;
   password: string;
 };
 
-const RegisterForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-
-  const [form, setForm] = useState<RegisterTenantType>({
-    name: "",
+  const dispatch: DispatchType = useDispatch();
+  const [form, setForm] = useState<LoginTenantType>({
     email: "",
     password: "",
   });
 
-  const { error, isLoading, success }: RegisterState = useSelector(
-    (state: RootState) => state.Register
+  const { error, isLoading }: LoginState = useSelector(
+    (state: RootState) => state.Login
   );
 
   const onValueChanged = (value: string, name: string) => {
@@ -34,21 +34,16 @@ const RegisterForm: React.FC = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(signIn(form));
   };
-
-  useEffect(() => {
-    if (success) {
-      navigate("/login");
-    }
-  }, [success, navigate]);
 
   return (
     <FormContainer onSubmit={onSubmit} className="w-full">
       <h1 className="text-2xl font-black text-dark-200 px-4 text-center font-primary">
-        Register Here
+        Login Here
       </h1>
       <p className="text-base px-4 text-center font-medium text-light-400 mt-2 mb-8 font-secondary">
-        Please fill in this form to create an account.
+        Welcome back, please login to your account
       </p>
       <TextInput
         label="Email"
@@ -74,7 +69,7 @@ const RegisterForm: React.FC = () => {
       <FilledButton
         disabled={isLoading}
         type={ButtonActions.SUBMIT}
-        className="w-full p-2 mt-8 bg-blue-200 hover:bg-blue-100 text-white"
+        className="w-full p-2 mt-4 bg-blue-200 hover:bg-blue-100 text-white"
       >
         Login
       </FilledButton>
@@ -91,4 +86,4 @@ const RegisterForm: React.FC = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
