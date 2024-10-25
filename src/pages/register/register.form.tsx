@@ -3,13 +3,14 @@ import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
 import TextInput from "../../components/inputs/text.input";
 import { createTenant } from "../../redux/actions/tenant.actions";
-import { ButtonActions, DispatchType } from "../../utils/types";
+import { ButtonActions } from "../../utils/enum";
 import { useDispatch } from "react-redux";
 import { RegisterState } from "../../redux/reducers/register.reducer";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { useNavigate } from "react-router-dom";
 import ErrorComponent from "../../components/typography/error.typo";
+import { DispatchType } from "../../utils/types";
 
 type RegisterTenantType = {
   name: string;

@@ -1,18 +1,34 @@
 import axios from "axios";
+import { getLocalStorageValue } from "../redux/actions/localStorage.service";
+import { LocalStorageItemNames } from "./enum";
 
 const baseURL = "http://localhost/api";
 
-export const publicAPI = axios.create({
+const publicAPI = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export const privateAPI = axios.create({
+const privateAPI = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
+
+privateAPI.interceptors.request.use(
+  (config) => {
+    const token = getLocalStorageValue(LocalStorageItemNames.TOKEN);
+    if (token) {
+      config.headers!.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export { privateAPI, publicAPI };

@@ -2,7 +2,7 @@ import { useState } from "react";
 import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
 import TextInput from "../../components/inputs/text.input";
-import { ButtonActions, DispatchType } from "../../utils/types";
+import { DispatchType } from "../../utils/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import ErrorComponent from "../../components/typography/error.typo";
 import { LoginState } from "../../redux/reducers/login.reducer";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/actions/auth.action";
+import { ButtonActions } from "../../utils/enum";
 
 type LoginTenantType = {
   email: string;

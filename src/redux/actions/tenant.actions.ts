@@ -1,7 +1,7 @@
 import { publicAPI } from "../../utils/api";
 import { ErrorMessages } from "../../utils/error";
+import { DispatchType } from "../../utils/types";
 import { RegisterActions } from "../reducers/register.reducer";
-import { Dispatch } from "@reduxjs/toolkit";
 
 export type RegisterTenantType = {
   name: string;
@@ -9,14 +9,18 @@ export type RegisterTenantType = {
   password: string;
 };
 
+enum EndPoints {
+  REGISTER = "/tenant/register",
+}
+
 export const createTenant =
-  (requestObject: RegisterTenantType) => async (dispatch: Dispatch) => {
+  (requestObject: RegisterTenantType) => async (dispatch: DispatchType) => {
     try {
       dispatch({
         type: RegisterActions.SET_LOADING,
       });
 
-      const { data } = await publicAPI.post("/tenant/register", requestObject);
+      const { data } = await publicAPI.post(EndPoints.REGISTER, requestObject);
 
       if (data) {
         dispatch({

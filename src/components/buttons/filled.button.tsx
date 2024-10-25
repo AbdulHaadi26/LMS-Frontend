@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { ButtonActions } from "../../utils/types";
+import { ButtonActions } from "../../utils/enum";
 
 type FilledButtonProps = {
   className?: string;

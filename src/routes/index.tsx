@@ -1,10 +1,10 @@
+import { useCallback } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { RootState } from "../redux/reducers";
+import { AuthState } from "../redux/reducers/auth.reducer";
 import PrivateRoute from "./private.route";
 import PublicRoute from "./public.route";
-import { useSelector } from "react-redux";
-import { AuthState } from "../redux/reducers/auth.reducer";
-import { RootState } from "../redux/reducers";
-import { useCallback } from "react";
 
 const RenderRoutes = () => {
   const authState: AuthState = useSelector((state: RootState) => state.Auth);

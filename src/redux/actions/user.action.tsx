@@ -1,36 +1,41 @@
-import { privateAPI, publicAPI } from "../../utils/api";
-import { ErrorMessages } from "../../utils/error";
+import { privateAPI } from "../../utils/api";
+import { LocalStorageItemNames } from "../../utils/enum";
+import { DispatchType } from "../../utils/types";
 import { AuthActions } from "../reducers/auth.reducer";
 import { LoginActions } from "../reducers/login.reducer";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setLocalStorageValue } from "./localstorage.service";
+import { ProfileActions } from "../reducers/profile.reducer";
+import { removeLocalStorageValue } from "./localStorage.service";
 
-export const getProfile = () => async (dispatch: Dispatch) => {
+enum EndPoints {
+  GET_PROFILE = "/user/profile",
+}
+
+export const getProfile = () => async (dispatch: DispatchType) => {
   try {
-    //   dispatch({
-    //     type: LoginActions.SET_LOADING,
-    //   });
+    dispatch({
+      type: AuthActions.SET_AUTH,
+      payload: true,
+    });
 
-    const { data } = await privateAPI.post("/user");
+    dispatch({
+      type: LoginActions.SET_LOADING,
+    });
 
-    if (data.token) {
-      setLocalStorageValue("token", data.token);
+    const { data } = await privateAPI.get(EndPoints.GET_PROFILE);
 
+    if (data.profile) {
       dispatch({
-        type: LoginActions.SET_SUCCESS,
-      });
-
-      dispatch({
-        type: AuthActions.SET_AUTH,
-        payload: true,
+        type: ProfileActions.SET_PROFILE,
+        payload: data.profile,
       });
     } else {
       throw new Error(data.error);
     }
   } catch {
+    removeLocalStorageValue(LocalStorageItemNames.TOKEN);
     dispatch({
-      type: LoginActions.SET_ERROR,
-      payload: ErrorMessages.LOGIN_FAILED,
+      type: AuthActions.SET_AUTH,
+      payload: false,
     });
   }
 };
