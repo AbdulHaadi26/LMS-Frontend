@@ -7,6 +7,9 @@ export enum ButtonActions {
 export enum RouteNames {
   LOGIN = "login",
   REGISTER = "register",
+  INVOICES = "invoices",
+  EMPLOYEES = "employees",
+  PROFILE = "profile",
 }
 
 export enum LocalStorageItemNames {
@@ -15,4 +18,10 @@ export enum LocalStorageItemNames {
 
 export enum UserTypes {
   ADMIN = "admin",
+}
+
+export enum TabNames {
+  INVOICES = "Invoices",
+  EMPLOYEES = "Employees",
+  PROFILE = "Profile",
 }

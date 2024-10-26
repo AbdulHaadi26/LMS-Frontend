@@ -1,3 +1,4 @@
+import "font-awesome/css/font-awesome.min.css";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FluidContainer } from "./components/containers";
