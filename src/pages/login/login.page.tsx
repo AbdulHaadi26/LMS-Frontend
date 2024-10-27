@@ -1,18 +1,16 @@
 import { ColContainer, RowContainer } from "../../components/containers";
+import LoginDescription from "./login.description";
 import LoginForm from "./login.from";
-import ImageComponent from "../../components/image/image.component";
-import RegisterBG from "../../assets/public/login.jpg";
 
 const LoginPage: React.FC = () => {
   return (
-    <RowContainer className="w-full h-full md:flex-row flex-col-reverse flex-wrap">
-      <ColContainer className="md:w-1/3 w-full md:h-full h-auto py-8 px-8 justify-center bg-white shadow-xl">
+    <RowContainer className="w-full md:h-full h-auto md:flex-row flex-col-reverse flex-wrap p-4">
+      <ColContainer className="md:w-1/2 w-full md:h-full h-auto items-center justify-center bg-primary-50 rounded-lg">
+        <LoginDescription />
+      </ColContainer>
+      <ColContainer className="md:w-1/2 w-full md:h-full h-auto items-center justify-center bg-white">
         <LoginForm />
       </ColContainer>
-      <ImageComponent
-        src={RegisterBG}
-        className="md:w-2/3 w-full md:h-full h-1/3 object-cover"
-      />
     </RowContainer>
   );
 };

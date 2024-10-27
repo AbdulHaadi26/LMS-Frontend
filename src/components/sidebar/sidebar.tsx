@@ -4,6 +4,7 @@ import { RootState } from "../../redux/reducers";
 import { SystemState } from "../../redux/reducers/system.reducer";
 import { RouteNames, TabNames } from "../../utils/enum";
 import { ColContainer } from "../containers";
+import ProfileCard from "../profile-card/profile.card";
 import SidebarItem from "./sidebar.item";
 
 const Sidebar: React.FC = () => {
@@ -14,17 +15,8 @@ const Sidebar: React.FC = () => {
   const { tab } = systemState;
 
   return (
-    <ColContainer className="w-1/5 h-screen items-center py-4 overflow-y-auto shadow-lg bg-dark-200">
-      <h1 className="text-2xl text-white font-bold font-primary mb-8">
-        Pak Edu Matrix
-      </h1>
-
-      <SidebarItem
-        title={TabNames.PROFILE}
-        link={RouteNames.PROFILE}
-        icon="fa-user"
-        isActive={tab === TabNames.PROFILE}
-      />
+    <ColContainer className="w-1/5 px-2 h-screen items-center py-4 overflow-y-auto shadow-lg bg-primary-50">
+      <ProfileCard />
 
       <SidebarItem
         title={TabNames.EMPLOYEES}

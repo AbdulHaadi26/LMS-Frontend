@@ -22,7 +22,7 @@ const FilledButton: React.FC<FilledButtonProps> = (props) => {
       type={type}
       onClick={() => onClick()}
       disabled={disabled}
-      className={`text-sm font-bold font-primary rounded ${className}`}
+      className={`text-sm font-bold font-primary rounded ease-in-out duration-300 ${className}`}
     >
       {children}
     </button>

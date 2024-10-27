@@ -31,7 +31,7 @@ function App() {
 
   const template = useCallback(() => {
     return (
-      <FluidContainer className="items-center justify-center">
+      <FluidContainer>
         {isLoading ? <SpinnerLoader /> : <RenderRoutes />}
       </FluidContainer>
     );

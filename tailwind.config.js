@@ -25,7 +25,14 @@ export default {
         red: {
           200: "#c0392b",
           100: "#e74c3c"
-        }
+        },
+        primary: {
+          400: "#5F6F65",
+          300: "#808D7C",
+          200: "#9CA986",
+          100: "#C9DABF",
+          50: "#E9EED9"
+        },
       } ,
       fontFamily: {
       primary: ['Inter', 'sans-serif'],

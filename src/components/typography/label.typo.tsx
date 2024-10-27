@@ -8,7 +8,7 @@ const LabelComponent: React.FC<LabelType> = (props) => {
   const { label } = props;
   return (
     <label
-      className={`w-full text-xs font-bold font-primary text-dark-100 mb-1`}
+      className={`w-full text-xs font-bold font-primary text-primary-400 mb-1`}
     >
       {label}
     </label>

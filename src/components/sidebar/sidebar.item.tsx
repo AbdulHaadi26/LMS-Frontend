@@ -18,17 +18,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   isActive = false,
 }) => {
   const navigate = useNavigate();
-  const tabClass = isActive ? "bg-blue-600 shadow" : "";
+  const tabClass = isActive ? "bg-primary-400 shadow-lg" : "";
+  const textClass = isActive ? "text-primary-50" : "text-primary-400";
 
   return (
     <div
-      className={`w-full flex flex-row items-center cursor-pointer 
-        px-4 py-2 rounded mb-2 ease-in-out duration-200
-        ${tabClass} ${className}`}
+      className={`w-full hover:bg-primary-100 flex flex-row items-center cursor-pointer px-4 py-2 rounded mb-2 ease-in-out duration-200 ${tabClass} ${className}`}
       onClick={() => navigate(link)}
     >
-      <span className={`text-white fa ${icon} mr-2`}></span>
-      <span className={`text-sm font-bold text-white font-secondary`}>
+      <div className="w-8">
+        <span className={`${textClass} fa ${icon}`}></span>
+      </div>
+      <span className={`flex-1 text-sm font-bold ${textClass} font-secondary`}>
         {title}
       </span>
     </div>

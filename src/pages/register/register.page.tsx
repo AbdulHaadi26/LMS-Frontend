@@ -1,17 +1,15 @@
 import { ColContainer, RowContainer } from "../../components/containers";
-import RegisterFrom from "./register.form";
-import ImageComponent from "../../components/image/image.component";
-import RegisterBG from "../../assets/public/register.jpg";
+import RegisterDescription from "./register.description";
+import RegisterForm from "./register.form";
 
 const RegisterPage: React.FC = () => {
   return (
-    <RowContainer className="w-full h-full flex-row flex-wrap">
-      <ImageComponent
-        src={RegisterBG}
-        className="md:w-2/3 w-full md:h-full h-1/3 object-cover"
-      />
-      <ColContainer className="md:w-1/3 w-full md:h-full h-auto py-8 px-8 justify-center bg-white shadow-xl">
-        <RegisterFrom />
+    <RowContainer className="w-full md:h-full h-auto flex-row flex-wrap p-4">
+      <ColContainer className="md:w-1/2 w-full md:h-full h-auto items-center justify-center bg-white">
+        <RegisterForm />
+      </ColContainer>
+      <ColContainer className="md:w-1/2 w-full md:h-full h-auto items-center justify-center bg-primary-50 rounded-lg">
+        <RegisterDescription />
       </ColContainer>
     </RowContainer>
   );
