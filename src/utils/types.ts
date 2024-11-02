@@ -1,6 +1,6 @@
+import { AnyAction } from "redux-saga";
 import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../redux/reducers";
-import { AnyAction } from "redux-saga";
 
 export type DispatchType = ThunkDispatch<RootState, unknown, AnyAction>;
 
@@ -11,4 +11,9 @@ export type ProfileTyoe = {
   email: string;
   tenantId: string;
   type: string;
+};
+
+export type SelectOptionType = {
+  label: string;
+  value: string;
 };

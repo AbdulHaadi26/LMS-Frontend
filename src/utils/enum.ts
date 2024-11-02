@@ -25,3 +25,16 @@ export enum TabNames {
   EMPLOYEES = "Employees",
   PROFILE = "Profile",
 }
+
+export enum InoviceStatuses {
+  UNPAID = "UNPAID",
+  PAID = "PAID",
+  CANCELLED = "CANCELLED",
+  ALL = "ALL",
+}
+
+export enum InvoiceTypes {
+  INCOMING = "INCOMING",
+  OUTGOING = "OUTGOING",
+  ALL = "ALL",
+}

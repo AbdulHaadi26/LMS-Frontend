@@ -3,6 +3,7 @@ import { getLocalStorageValue } from "../redux/actions/localStorage.service";
 import { LocalStorageItemNames } from "./enum";
 
 const baseURL = "http://localhost/api";
+// const baseURL = "https://lms-backend-hu7e.onrender.com/api";
 
 const publicAPI = axios.create({
   baseURL,

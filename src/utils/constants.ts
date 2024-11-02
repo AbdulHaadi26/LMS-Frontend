@@ -1,3 +1,6 @@
+import { InoviceStatuses, InvoiceTypes } from "./enum";
+import { SelectOptionType } from "./types";
+
 export const AUTO_COMPLETE_CONSTANT = "WEIRD_2024";
 export const INFO_DATA = [
   {
@@ -16,5 +19,31 @@ export const INFO_DATA = [
     title: "Flexible",
     description:
       "Customize your learning experience to meet your unique learning needs",
+  },
+];
+
+export const INVOICES_TYPES: SelectOptionType[] = [
+  {
+    value: InvoiceTypes.INCOMING,
+    label: "Incoming",
+  },
+  {
+    value: InvoiceTypes.OUTGOING,
+    label: "Outgoing",
+  },
+];
+
+export const INVOICES_STATUSES: SelectOptionType[] = [
+  {
+    value: InoviceStatuses.PAID,
+    label: "Paid",
+  },
+  {
+    value: InoviceStatuses.UNPAID,
+    label: "Unpaid",
+  },
+  {
+    value: InoviceStatuses.CANCELLED,
+    label: "Cancelled",
   },
 ];
