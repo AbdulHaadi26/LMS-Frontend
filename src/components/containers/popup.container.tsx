@@ -24,7 +24,7 @@ const PopupContainer: React.FC<PopupContainerProps> = ({
         onClick={onClose}
       />
       <ColContainer
-        className={`max-w-[90vw] max-h-[90vh] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg z-20 overflow-y-auto bg-white rounded-md ${className}`}
+        className={`max-w-[90vw] max-h-[90vh] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg z-20 bg-white rounded-md ${className}`}
       >
         {(title || showCloseIcon) && (
           <RowContainer className="items-center border-b border-primary-200 pb-2 px-4 pt-2">

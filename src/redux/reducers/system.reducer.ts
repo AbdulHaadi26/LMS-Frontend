@@ -6,6 +6,7 @@ export type SystemState = {
 
 export enum SystemActions {
   SET_TAB = "SYSTEM[SET_TAB]",
+  SET_TOAST = "SYSTEM[SET_TOAST]",
 }
 
 const initialState: SystemState = {

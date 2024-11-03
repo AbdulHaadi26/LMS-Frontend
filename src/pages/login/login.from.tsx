@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
@@ -7,8 +7,6 @@ import TextInput from "../../components/inputs/text.input";
 import LogoIcon from "../../components/logo/logo.icon";
 import ErrorComponent from "../../components/typography/error.typo";
 import { signIn } from "../../redux/actions/auth.action";
-import { RootState } from "../../redux/reducers";
-import { LoginState } from "../../redux/reducers/login.reducer";
 import { ButtonActions } from "../../utils/enum";
 import { DispatchType } from "../../utils/types";
 
@@ -20,22 +18,27 @@ type LoginTenantType = {
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch: DispatchType = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState<LoginTenantType>({
     email: "",
     password: "",
   });
 
-  const { error, isLoading }: LoginState = useSelector(
-    (state: RootState) => state.Login
-  );
-
   const onValueChanged = (value: string, name: string) => {
     setForm({ ...form, [name]: value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(signIn(form));
+    setIsLoading(true);
+    const res = await dispatch(signIn(form));
+
+    if (res?.error) {
+      setError(res.error);
+    }
+
+    setIsLoading(false);
   };
 
   return (

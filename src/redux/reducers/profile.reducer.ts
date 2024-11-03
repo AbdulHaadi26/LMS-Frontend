@@ -1,8 +1,8 @@
-import { ProfileTyoe } from "../../utils/types";
+import { ProfileType } from "../../utils/types";
 
 export type ProfileState = {
   isLoading: boolean;
-  profile: ProfileTyoe | null;
+  profile: ProfileType | null;
 };
 
 export enum ProfileActions {
@@ -17,7 +17,7 @@ const initialState: ProfileState = {
 
 export const profileReducer = (
   state = initialState,
-  action: { type: string; payload: boolean }
+  action: { type: string; payload: ProfileState }
 ) => {
   switch (action.type) {
     case ProfileActions.FETCH_PROFILE:
@@ -30,7 +30,7 @@ export const profileReducer = (
       return {
         ...state,
         isLoading: false,
-        profile: action.payload,
+        profile: action.payload.profile,
       };
 
     default:

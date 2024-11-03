@@ -1,9 +1,8 @@
 import { publicAPI } from "../../utils/api";
 import { LocalStorageItemNames } from "../../utils/enum";
 import { ErrorMessages } from "../../utils/error";
-import { DispatchType } from "../../utils/types";
+import { ApiResponseType, DispatchType } from "../../utils/types";
 import { AuthActions } from "../reducers/auth.reducer";
-import { LoginActions } from "../reducers/login.reducer";
 import { ProfileActions } from "../reducers/profile.reducer";
 import {
   removeLocalStorageValue,
@@ -21,41 +20,40 @@ enum Endpoints {
 }
 
 export const signIn =
-  (requestObject: SignInType) => async (dispatch: DispatchType) => {
+  (requestObject: SignInType) =>
+  async (dispatch: DispatchType): Promise<ApiResponseType<string>> => {
     try {
-      dispatch({
-        type: LoginActions.SET_LOADING,
-      });
-
       const { data } = await publicAPI.post(Endpoints.LOGIN, requestObject);
 
       if (data.token) {
         setLocalStorageValue(LocalStorageItemNames.TOKEN, data.token);
-
-        dispatch({
-          type: LoginActions.SET_SUCCESS,
-        });
-
         dispatch(getProfile());
+
+        return {
+          success: true,
+          data: data.token,
+        };
       } else {
         throw new Error(data.error);
       }
     } catch {
-      dispatch({
-        type: LoginActions.SET_ERROR,
-        payload: ErrorMessages.LOGIN_FAILED,
-      });
+      return {
+        success: false,
+        error: ErrorMessages.LOGIN_FAILED,
+      };
     }
   };
 
-export const signOut = () => async (dispatch: DispatchType) => {
-  removeLocalStorageValue(LocalStorageItemNames.TOKEN);
-  dispatch({
-    type: AuthActions.SET_AUTH,
-    payload: false,
-  });
-  dispatch({
-    type: ProfileActions.SET_PROFILE,
-    payload: null,
-  });
-};
+export const signOut =
+  () =>
+  async (dispatch: DispatchType): Promise<void> => {
+    removeLocalStorageValue(LocalStorageItemNames.TOKEN);
+    dispatch({
+      type: AuthActions.SET_AUTH,
+      payload: false,
+    });
+    dispatch({
+      type: ProfileActions.SET_PROFILE,
+      payload: null,
+    });
+  };

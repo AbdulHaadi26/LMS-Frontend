@@ -2,25 +2,22 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { thunk } from "redux-thunk";
 import { authReducer, AuthState } from "./auth.reducer";
-import { loginReducer, LoginState } from "./login.reducer";
+import { invoiceReducer, InvoiceState } from "./invoice.redux";
 import { profileReducer, ProfileState } from "./profile.reducer";
-import { registerReducer, RegisterState } from "./register.reducer";
 import { systemReducer, SystemState } from "./system.reducer";
 
 export interface RootState {
   Auth: AuthState;
-  Register: RegisterState;
-  Login: LoginState;
   Profile: ProfileState;
   System: SystemState;
+  Invoice: InvoiceState;
 }
 
 const rootReducer = combineReducers({
   Auth: authReducer,
-  Register: registerReducer,
-  Login: loginReducer,
   Profile: profileReducer,
   System: systemReducer,
+  Invoice: invoiceReducer,
 });
 
 const reduxStore = configureStore({

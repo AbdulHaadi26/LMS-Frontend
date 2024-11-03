@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FilledButton from "../../components/buttons/filled.button";
 import FormContainer from "../../components/containers/form.container";
@@ -7,10 +6,7 @@ import TextInput from "../../components/inputs/text.input";
 import LogoIcon from "../../components/logo/logo.icon";
 import ErrorComponent from "../../components/typography/error.typo";
 import { createTenant } from "../../redux/actions/tenant.actions";
-import { RootState } from "../../redux/reducers";
-import { RegisterState } from "../../redux/reducers/register.reducer";
 import { ButtonActions } from "../../utils/enum";
-import { DispatchType } from "../../utils/types";
 
 type RegisterTenantType = {
   name: string;
@@ -19,8 +15,9 @@ type RegisterTenantType = {
 };
 
 const RegisterForm: React.FC = () => {
-  const dispatch: DispatchType = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [form, setForm] = useState<RegisterTenantType>({
     name: "",
@@ -28,24 +25,23 @@ const RegisterForm: React.FC = () => {
     password: "",
   });
 
-  const { error, isLoading, success }: RegisterState = useSelector(
-    (state: RootState) => state.Register
-  );
-
   const onValueChanged = (value: string, name: string) => {
     setForm({ ...form, [name]: value });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(createTenant(form));
-  };
+    setIsLoading(true);
+    const res = await createTenant(form);
 
-  useEffect(() => {
-    if (success) {
+    if (res?.error) {
+      setError(res.error);
+    } else {
       navigate("/login");
     }
-  }, [success, navigate]);
+
+    setIsLoading(false);
+  };
 
   return (
     <FormContainer onSubmit={onSubmit} className="md:w-8/12 w-full p-4 mb-4">
